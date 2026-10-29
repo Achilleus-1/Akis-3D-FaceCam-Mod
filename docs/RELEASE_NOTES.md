@@ -1,6 +1,6 @@
-# Aki's 3D FaceCam Mod — 1.1.0-beta.1
+# Aki's 3D FaceCam Mod — 1.1.0-beta.2
 
-First public beta for **Minecraft 1.21.1**, **NeoForge 21.1.259**, **Java 21**,
+Artwork update for the public beta on **Minecraft 1.21.1**, **NeoForge 21.1.259**, **Java 21**,
 and **Windows x64 clients**. Product of [Achilleus](https://linktr.ee/achilleus_).
 
 An ordinary RGB webcam supplies a masked, approximately reconstructed 3D face
@@ -15,9 +15,15 @@ the connected NeoForge server, with distance, rate, and bandwidth limits.
 - Standard/slim heads, normal skin, outer layers, and vanilla helmets are preserved.
 - Bundled Windows native libraries and models; no Python or companion setup for players.
 
+## Changes in beta.2
+
+- Use Achilleus's supplied purple face-cube artwork throughout the mod and repository.
+- Preserve original PNG transparency and the entire composition in every export.
+- Webcam, geometry, protocol, and settings behavior is unchanged from beta.1.
+
 ## Install
 
-Download `akis-3d-facecam-mod-1.21.1-1.1.0-beta.1.jar` and replace older FaceCam
+Download `akis-3d-facecam-mod-1.21.1-1.1.0-beta.2.jar` and replace older FaceCam
 jars in the client's `mods` folder. Multiplayer requires the same beta on the
 server and participating clients. The `source-project.zip` is the complete
 editable Gradle project; `SHA256SUMS.txt` verifies both attachments.

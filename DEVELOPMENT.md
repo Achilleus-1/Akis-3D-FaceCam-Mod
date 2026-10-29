@@ -14,7 +14,7 @@ supported on Windows x64 clients. The first build downloads pinned dependencies.
 Python 3.12 is only for developer utilities; normal players need no Python.
 `tools/package.py` uses the standard library. Regenerating branding requires Pillow.
 
-The installable mod is `build/libs/akis-3d-facecam-mod-1.21.1-1.1.0-beta.1.jar`.
+The installable mod is `build/libs/akis-3d-facecam-mod-1.21.1-1.1.0-beta.2.jar`.
 The `-sources.jar` is Java source only, not an installable mod. Packaging produces
 the installable jar, a complete editable source project zip, and SHA256 manifests
 under `dist/`. Generated artifacts are release attachments, not Git source files.
@@ -49,7 +49,7 @@ installations do not set that JVM property. Keep development test servers local.
 ```powershell
 python tools/verification-assets.py
 .\gradlew.bat nativeSmoke
-java -cp build/libs/akis-3d-facecam-mod-1.21.1-1.1.0-beta.1.jar dev.facecam.diagnostic.NativeSmoke --camera 0
+java -cp build/libs/akis-3d-facecam-mod-1.21.1-1.1.0-beta.2.jar dev.facecam.diagnostic.NativeSmoke --camera 0
 ```
 
 The first command downloads an upstream public test photo into ignored build

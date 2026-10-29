@@ -1,4 +1,4 @@
-> Public beta 1.1.0-beta.1. See the [project overview](../README.md) and [release notes](RELEASE_NOTES.md). Commands below run from the project root.
+> Public beta 1.1.0-beta.2. See the [project overview](../README.md) and [release notes](RELEASE_NOTES.md). Commands below run from the project root.
 
 # Aki's 3D FaceCam Mod — setup, controls, and architecture
 
@@ -7,7 +7,7 @@ A Minecraft Java Edition mod for **Minecraft 1.21.1 / NeoForge 21.1.259 / Java 2
 ## Install
 
 1. Install 64-bit Java 21 and the **NeoForge 21.1.259** client for Minecraft **1.21.1** using the official installer: https://neoforged.net/ . Select that profile in your launcher.
-2. Put **akis-3d-facecam-mod-1.21.1-1.1.0-beta.1.jar** into that profile's `mods` folder. Use the jar without `-sources` in its name.
+2. Put **akis-3d-facecam-mod-1.21.1-1.1.0-beta.2.jar** into that profile's `mods` folder. Use the jar without `-sources` in its name.
 3. Launch Minecraft. The camera and sharing start **off on every launch**. There is no Python installation, script, companion app, or model download to perform.
 4. For multiplayer, install the same jar in the NeoForge 21.1.259 server's `mods` folder and on participating clients. Players can receive faces without enabling their own camera. The mod is required on both sides of the connection.
 5. Singleplayer uses the integrated server automatically; no separate server install is needed.
@@ -71,7 +71,7 @@ $env:JAVA_HOME = 'C:\path\to\jdk-21'
 .\gradlew.bat build
 ```
 
-Outputs are `build/libs/akis-3d-facecam-mod-1.21.1-1.1.0-beta.1.jar` and `build/libs/akis-3d-facecam-mod-1.21.1-1.1.0-beta.1-sources.jar`. The first build needs network access for pinned Gradle/NeoForge/Maven dependencies. Normal mod use needs no model/dependency downloads. Maven versions and NeoForge are pinned in `build.gradle`; model SHA256 hashes are recorded with the models. Use Java 21 to run Gradle as well as Minecraft.
+Outputs are `build/libs/akis-3d-facecam-mod-1.21.1-1.1.0-beta.2.jar` and `build/libs/akis-3d-facecam-mod-1.21.1-1.1.0-beta.2-sources.jar`. The first build needs network access for pinned Gradle/NeoForge/Maven dependencies. Normal mod use needs no model/dependency downloads. Maven versions and NeoForge are pinned in `build.gradle`; model SHA256 hashes are recorded with the models. Use Java 21 to run Gradle as well as Minecraft.
 
 `tools/bootstrap.py` is an optional developer re-download utility, not a runtime requirement. The project already contains its model files and wrapper. `tools/verification-assets.py` downloads an upstream public test photograph into `build/verification` only. `gradlew nativeSmoke` explicitly tests native loading and inference against that photograph. See [VERIFICATION.md](../VERIFICATION.md) for observed results and repeatable two-client checks.
 

@@ -10,7 +10,7 @@ Unofficial Minecraft mod; not approved by or affiliated with Mojang or Microsoft
 
 Put your live face on your Minecraft character. An ordinary RGB webcam drives a textured triangle mesh with approximate nose, cheek, brow, and lip depth. Expressions animate while the surface stays attached to the player's existing head. Local inference removes the surrounding background; nearby players receive the effect through the connected modded server.
 
-**Public beta · 1.1.0-beta.1.** Camera and sharing start **off**. No audio, cloud inference, Python installation, or manually launched companion app.
+**Public beta · 1.1.0-beta.2.** Camera and sharing start **off**. No audio, cloud inference, Python installation, or manually launched companion app.
 
 ## Preview
 
@@ -22,7 +22,7 @@ Actual Minecraft capture from the earlier 1.1.0 implementation, using a repeatab
 
 For **Minecraft 1.21.1**, **NeoForge 21.1.259**, **Java 21**, and **Windows x64 clients**.
 
-1. Download `akis-3d-facecam-mod-1.21.1-1.1.0-beta.1.jar` from the [beta release](https://github.com/Achilleus-1/Akis-3D-FaceCam-Mod/releases/tag/v1.1.0-beta.1).
+1. Download `akis-3d-facecam-mod-1.21.1-1.1.0-beta.2.jar` from the [beta release](https://github.com/Achilleus-1/Akis-3D-FaceCam-Mod/releases/tag/v1.1.0-beta.2).
 2. Place it in your NeoForge profile's `mods` folder and remove older FaceCam jars.
 3. For multiplayer, install the same beta on the server and participating clients. Players may receive faces without enabling their own webcam. Singleplayer uses the integrated server automatically.
 4. Launch Minecraft, join a world, and open settings with **comma**. Choose a camera and use **Local preview** or **Start sharing** explicitly.

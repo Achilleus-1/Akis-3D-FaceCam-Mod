@@ -1,5 +1,17 @@
 # FaceCam verification
 
+## Artwork beta 1.1.0-beta.2 — 2026-10-28
+
+The supplied `Akis-3D-FaceCam-Mod.png` replaces the generated artwork. The README
+cover is byte-identical to the original. Both 512 × 512 packaged icons and the
+1280 × 640 social preview retain RGBA transparency and the full composition.
+The packaged icon bytes match the verified project assets. All compiled classes
+are byte-identical to beta.1; this release changes branding and version metadata.
+
+`gradlew build` succeeded and all ten automated tests passed. Repository checks
+and direct alpha-channel checks passed. Existing live webcam and clean Windows
+installation limitations below remain; no new camera test is claimed.
+
 ## Public beta 1.1.0-beta.1 — 2026-10-28
 
 The renamed **Aki's 3D FaceCam Mod** beta was rebuilt with Java 21 for Minecraft

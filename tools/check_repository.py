@@ -48,7 +48,7 @@ def main():
     for name in ['README.md','docs/GUIDE.md','DEVELOPMENT.md','docs/RELEASE_NOTES.md']:
         if JAR_NAME not in (ROOT/name).read_text(encoding='utf-8'):
             failures.append(name+': release filename does not match gradle.properties')
-    if not VERSION.endswith('-beta.1'):
+    if not re.fullmatch(r'\d+\.\d+\.\d+-beta\.\d+', VERSION):
         failures.append('Expected the prepared beta version')
     if failures:
         print('\n'.join(failures),file=sys.stderr)

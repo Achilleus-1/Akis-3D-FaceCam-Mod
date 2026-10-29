@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.1.0-beta.2 — 2026-10-28
+
+- Replace generated branding with Achilleus's supplied `Akis-3D-FaceCam-Mod.png`.
+- Preserve the original transparent cover byte-for-byte; derive matching mod and
+  resource-pack icons and a transparent social preview without cropping.
+- Replace the artwork generator with an exporter that retains the supplied image.
+- No changes to webcam capture, tracking, rendering, networking, or settings.
+
 ## 1.1.0-beta.1 — 2026-10-28
 
 - Publish the existing 1.1.0 implementation as **Aki's 3D FaceCam Mod**.
