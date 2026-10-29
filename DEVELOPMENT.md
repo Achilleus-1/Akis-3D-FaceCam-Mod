@@ -16,8 +16,10 @@ Python 3.12 is only for developer utilities; normal players need no Python.
 
 The installable mod is `build/libs/akis-3d-facecam-mod-1.21.1-1.1.0-beta.2.jar`.
 The `-sources.jar` is Java source only, not an installable mod. Packaging produces
-the installable jar, a complete editable source project zip, and SHA256 manifests
-under `dist/`. Generated artifacts are release attachments, not Git source files.
+the installable jar and a local editable source project backup under `dist/`.
+Only the mod jar is attached to GitHub releases. GitHub's built-in source ZIP
+and tar.gz downloads provide the complete tagged project, matching the other
+Aki mods. Generated artifacts are not committed to Git.
 Pinned model hashes and the Gradle distribution hash are checked during the build.
 
 ## Layout
@@ -67,6 +69,8 @@ it is not part of user installation.
 ## Release
 
 Update `mod_version`, changelog, user-facing download names, and release notes.
+Keep release notes concise: changes, installation, essential beta limitations,
+and source/license links. Attach only the installable mod jar.
 Run the checks above before creating a tag. `tools/github_release.py` requires
 explicit `--publish`, GitHub CLI, and existing GitHub authentication. It publishes
 only a clean prepared checkout with matching release assets. It never writes

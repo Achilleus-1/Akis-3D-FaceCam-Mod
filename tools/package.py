@@ -1,6 +1,6 @@
 """Create deliverables without developer caches, worlds, personal camera images, or Minecraft binaries."""
-import pathlib, zipfile, hashlib, json, shutil
-from project import ROOT as root, VERSION, STEM, JAR_NAME, SOURCE_NAME
+import pathlib, zipfile, shutil
+from project import ROOT as root, VERSION, JAR_NAME, SOURCE_NAME
 dist=root/'dist';dist.mkdir(exist_ok=True)
 jar=root/'build/libs'/JAR_NAME
 shutil.copy2(jar,dist/jar.name)
@@ -24,7 +24,7 @@ for name in ['README.md','VERIFICATION.md','BRANDING.md','CHANGELOG.md','CONTRIB
 archive=dist/SOURCE_NAME
 with zipfile.ZipFile(archive,'w',zipfile.ZIP_DEFLATED) as z:
     for p in sorted(paths):z.write(p,pathlib.Path('Akis-3D-FaceCam-Mod')/p.relative_to(root))
-manifest={p.name:{'bytes':p.stat().st_size,'sha256':hashlib.sha256(p.read_bytes()).hexdigest()} for p in [dist/jar.name,archive]}
-(dist/'SHA256.json').write_text(json.dumps(manifest,indent=2)+'\n')
-(dist/'SHA256SUMS.txt').write_text(''.join(data['sha256']+'  '+name+'\n' for name,data in manifest.items()),encoding='utf-8')
-print(json.dumps(manifest,indent=2))
+for name in ['SHA256.json','SHA256SUMS.txt']:
+    (dist/name).unlink(missing_ok=True)
+print('Release attachment:',jar.name)
+print('Local editable source backup:',archive.name)

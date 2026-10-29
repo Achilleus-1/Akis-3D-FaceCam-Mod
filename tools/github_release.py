@@ -10,7 +10,7 @@ import os
 from pathlib import Path
 import shutil
 import subprocess
-from project import VERSION, JAR_NAME, SOURCE_NAME
+from project import VERSION, JAR_NAME
 
 ROOT = Path(__file__).resolve().parents[1]
 REPO = 'Achilleus-1/Akis-3D-FaceCam-Mod'
@@ -56,7 +56,7 @@ def main():
         head=subprocess.run(['git','rev-parse','HEAD'],cwd=ROOT,text=True,capture_output=True,check=True).stdout.strip()
         if not any(r['headSha']==head and r['conclusion']=='success' for r in runs):
             raise SystemExit('The current main commit has no successful CI run.')
-        expected={JAR_NAME,SOURCE_NAME,'SHA256SUMS.txt','SHA256.json'}
+        expected={JAR_NAME}
         if {a['name'] for a in release['assets']}!=expected:
             raise SystemExit('Draft release asset set is incomplete or unexpected.')
         if not release['isPrerelease']:
@@ -75,11 +75,9 @@ def publish(run, env):
         raise SystemExit('Commit the prepared source before publishing.')
     if git('branch','--show-current')!='main':
         raise SystemExit('Publish from main.')
-    manifest=json.loads((ROOT/'dist/SHA256.json').read_text())
-    for name in [JAR_NAME,SOURCE_NAME]:
-        asset=ROOT/'dist'/name
-        if hashlib.sha256(asset.read_bytes()).hexdigest()!=manifest[name]['sha256']:
-            raise SystemExit('Release checksum mismatch: '+name)
+    with (ROOT/'dist'/JAR_NAME).open('rb') as prepared, (ROOT/'build/libs'/JAR_NAME).open('rb') as built:
+        if hashlib.file_digest(prepared,'sha256').digest()!=hashlib.file_digest(built,'sha256').digest():
+            raise SystemExit('Prepared release jar does not match the build output.')
     existing=json.loads(run('repo','list','Achilleus-1','--limit','100','--json','name'))
     if REPO.split('/')[1] not in {r['name'] for r in existing}:
         print(run('repo','create',REPO,'--public','--description',
@@ -105,7 +103,7 @@ def publish(run, env):
         '](../VERIFICATION.md)','](https://github.com/'+REPO+'/blob/'+tag+'/VERIFICATION.md)')
     temp=ROOT/'build/publishing/release-notes.md'
     temp.parent.mkdir(parents=True,exist_ok=True);temp.write_text(body,encoding='utf-8')
-    assets=[str(ROOT/'dist'/n) for n in [JAR_NAME,SOURCE_NAME,'SHA256SUMS.txt','SHA256.json']]
+    assets=[str(ROOT/'dist'/JAR_NAME)]
     releases=json.loads(run('release','list','--repo',REPO,'--json','tagName,isDraft'))
     if not any(r['tagName']==tag for r in releases):
         print(run('release','create',tag,*assets,'--repo',REPO,'--verify-tag','--draft','--prerelease',
