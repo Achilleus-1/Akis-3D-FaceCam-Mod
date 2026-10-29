@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Private security report
+    url: https://github.com/Achilleus-1/Akis-3D-FaceCam-Mod/security/advisories/new
+    about: Report security and privacy vulnerabilities privately.

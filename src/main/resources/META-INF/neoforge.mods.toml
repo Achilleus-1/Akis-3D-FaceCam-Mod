@@ -1,0 +1,24 @@
+modLoader="javafml"
+loaderVersion="[4,)"
+license="Apache-2.0"
+issueTrackerURL="https://github.com/Achilleus-1/Akis-3D-FaceCam-Mod/issues"
+[[mods]]
+modId="facecam"
+version="${mod_version}"
+displayName="${mod_name}"
+displayURL="https://github.com/Achilleus-1/Akis-3D-FaceCam-Mod"
+authors="Achilleus (Achilleus-1)"
+logoFile="icon.png"
+description='''An opt-in RGB webcam face mesh attached to your Minecraft head. Local face tracking, expressive 3D geometry, configurable proportions, and nearby multiplayer sharing. Windows x64 client beta; no audio or cloud inference. Product of Achilleus.'''
+[[dependencies.facecam]]
+modId="neoforge"
+type="required"
+versionRange="[21.1.259,21.2)"
+ordering="NONE"
+side="BOTH"
+[[dependencies.facecam]]
+modId="minecraft"
+type="required"
+versionRange="[1.21.1]"
+ordering="NONE"
+side="BOTH"

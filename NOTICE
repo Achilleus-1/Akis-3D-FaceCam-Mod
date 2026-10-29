@@ -1,0 +1,8 @@
+Aki's 3D FaceCam Mod
+Copyright 2026 Achilleus (Achilleus-1) and FaceCam contributors.
+Product of Achilleus: https://linktr.ee/achilleus_
+
+Includes Google MediaPipe canonical geometry and face model weights (Apache-2.0).
+Includes ONNX model exports by Yakhyokhuja Valikhujaev, copyright 2026 (Apache-2.0).
+Detector postprocessing and ROI conventions follow that implementation and Google's MediaPipe.
+See THIRD_PARTY_NOTICES.md and licenses/ for complete attribution and licenses.

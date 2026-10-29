@@ -1,0 +1,23 @@
+name: Bug report
+description: Report a reproducible beta issue.
+body:
+  - type: markdown
+    attributes:
+      value: Do not attach face imagery, webcam recordings, tokens, or private server details. Redact local paths from logs.
+  - type: input
+    id: version
+    attributes:
+      label: Mod, Minecraft, NeoForge, and Java versions
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+      description: Include expected and actual behavior, camera index, and other installed mods where relevant.
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant redacted logs or error text

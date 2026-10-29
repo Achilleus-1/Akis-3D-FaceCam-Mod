@@ -1,0 +1,86 @@
+plugins {
+    id 'java-library'
+    id 'net.neoforged.moddev' version '2.0.148'
+}
+group = 'dev.facecam'
+version = providers.gradleProperty('mod_version').get()
+base { archivesName = providers.gradleProperty('archives_base_name').get() }
+java { toolchain.languageVersion = JavaLanguageVersion.of(21); withSourcesJar() }
+repositories { mavenCentral() }
+configurations { bundled; implementation.extendsFrom bundled }
+dependencies {
+    bundled 'org.bytedeco:javacpp:1.5.11'
+    bundled 'org.bytedeco:javacpp:1.5.11:windows-x86_64'
+    bundled 'org.bytedeco:opencv:4.10.0-1.5.11'
+    bundled 'org.bytedeco:opencv:4.10.0-1.5.11:windows-x86_64'
+    bundled 'org.bytedeco:openblas:0.3.28-1.5.11'
+    bundled 'org.bytedeco:openblas:0.3.28-1.5.11:windows-x86_64'
+    bundled 'com.microsoft.onnxruntime:onnxruntime:1.20.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.11.4'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+neoForge {
+    version = providers.gradleProperty('neoforge_version').get()
+    runs {
+        client { client(); gameDirectory = file('run') }
+        server { server(); gameDirectory = file('run-server'); programArgument '--nogui'; systemProperty 'facecam.verify.server', 'true' }
+        verifySender {
+            client(); gameDirectory = file('run-verify-sender')
+            programArguments.addAll '--username', 'VerifySender', '--width', '960', '--height', '540'
+            systemProperty 'facecam.verify.role', 'sender'
+            systemProperty 'facecam.verify.fixture', file('build/verification/reference.frame').absolutePath
+        }
+        verifyViewer {
+            client(); gameDirectory = file('run-verify-viewer')
+            programArguments.addAll '--username', 'VerifyViewer', '--width', '960', '--height', '540'
+            systemProperty 'facecam.verify.role', 'viewer'
+            systemProperty 'facecam.verify.fixture', file('build/verification/reference.frame').absolutePath
+        }
+    }
+    mods { facecam { sourceSet sourceSets.main } }
+}
+tasks.withType(JavaCompile).configureEach { options.encoding = 'UTF-8'; options.release = 21; options.incremental = false }
+tasks.register('verifyModels') {
+    def modelDir = file('src/main/resources/facecam/models')
+    inputs.dir(modelDir)
+    doLast {
+        def hashes = new groovy.json.JsonSlurper().parse(new File(modelDir, 'SHA256.json'))
+        hashes.each { name, expected ->
+            def actual = java.security.MessageDigest.getInstance('SHA-256').digest(new File(modelDir, name).bytes).encodeHex().toString()
+            if (actual != expected) throw new GradleException("Bundled model checksum mismatch: $name")
+        }
+    }
+}
+tasks.named('processResources') {
+    dependsOn 'verifyModels'
+    def metadata = [mod_version: project.version.toString(), mod_name: providers.gradleProperty('mod_name').get()]
+    inputs.properties(metadata)
+    filesMatching('META-INF/neoforge.mods.toml') { expand(metadata) }
+}
+tasks.named('test') { useJUnitPlatform(); maxHeapSize = '1G' }
+tasks.register('nativeSmoke', JavaExec) {
+    dependsOn classes
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = 'dev.facecam.diagnostic.NativeSmoke'
+    args 'build/verification/man_smiling.jpg'
+}
+tasks.register('writeVerificationClasspath') {
+    doLast {
+        file('build/verification').mkdirs()
+        file('build/verification/server-runtime-classpath.txt').text = tasks.named('runServer').get().classpath.asPath
+    }
+}
+tasks.named('jar') {
+    preserveFileTimestamps = false
+    reproducibleFileOrder = true
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    from({ configurations.bundled.collect { zipTree(it) } }) {
+        exclude 'META-INF/*.SF', 'META-INF/*.RSA', 'META-INF/*.DSA', 'module-info.class', 'META-INF/versions/**'
+        exclude 'ai/onnxruntime/native/linux-*/**', 'ai/onnxruntime/native/osx-*/**', 'ai/onnxruntime/native/win-aarch64/**'
+    }
+    from('LICENSE')
+    from('NOTICE')
+    from('THIRD_PARTY_NOTICES.md')
+    from('licenses') { into 'licenses' }
+    manifest { attributes 'Implementation-Version': project.version }
+}

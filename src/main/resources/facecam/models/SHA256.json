@@ -1,0 +1,5 @@
+{
+  "canonical_face_model.obj": "8bac80443397e113f41a8b565ea72c59390bc031d9defab289dba7bc0c54e618",
+  "face_detection_short_range.onnx": "2f2689b040becf555706d2cb978d2f0e3296ea82413734fba9a856c66c5f2b17",
+  "face_mesh_Nx3x192x192.onnx": "3ca77cf59c18e4da0eccb46695bf604683fa564253e3385892981a5c274fb10f"
+}

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="dev.facecam.CoreTest" tests="10" skipped="0" failures="0" errors="0" timestamp="2026-10-14T02:44:51.235Z" hostname="RADPC1" time="0.124">
+  <properties/>
+  <testcase name="expressionSurvivesPoseRemoval()" classname="dev.facecam.CoreTest" time="0.038"/>
+  <testcase name="tokenBudgetBoundsFramesAndBytes()" classname="dev.facecam.CoreTest" time="0.002"/>
+  <testcase name="sizePreservesHeadCenterAndSupportsExtremes()" classname="dev.facecam.CoreTest" time="0.002"/>
+  <testcase name="compressionRespectsServerboundPacketLimit()" classname="dev.facecam.CoreTest" time="0.041"/>
+  <testcase name="canonicalAtlasExcludesRoomPixels()" classname="dev.facecam.CoreTest" time="0.026"/>
+  <testcase name="topologyHasDepthAndValidTriangles()" classname="dev.facecam.CoreTest" time="0.002"/>
+  <testcase name="rejectsUnboundedGeometryAndFrames()" classname="dev.facecam.CoreTest" time="0.001"/>
+  <testcase name="receiverRejectsWrongDimensionsBeforePixelDecode()" classname="dev.facecam.CoreTest" time="0.003"/>
+  <testcase name="strongerDepthStaysBoundedAndBoundaryAttached()" classname="dev.facecam.CoreTest" time="0.001"/>
+  <testcase name="removesRigidTranslationRotationScale()" classname="dev.facecam.CoreTest" time="0.002"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

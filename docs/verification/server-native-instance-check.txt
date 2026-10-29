@@ -1,0 +1,1 @@
+No OrtSession, VideoCapture, DynamicTexture or NativeImage instances in dedicated server heap.

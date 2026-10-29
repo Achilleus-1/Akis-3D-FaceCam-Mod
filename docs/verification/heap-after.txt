@@ -1,0 +1,6 @@
+2547:             5            120  net.minecraft.client.renderer.texture.DynamicTexture (minecraft@1.21.1)
+2736:             3             96  dev.facecam.core.FaceFrame (facecam@1.0.0)
+3144:             1             72  dev.facecam.client.RemoteStreams$Slot (facecam@1.0.0)
+5434:             1             24  dev.facecam.client.RemoteStreams (facecam@1.0.0)
+6517:             1             16  dev.facecam.client.RemoteStreams$$Lambda/0x0000022f5ae05ce8 (facecam@1.0.0)
+6518:             1             16  dev.facecam.client.RemoteStreams$$Lambda/0x0000022f5b28e6c0 (facecam@1.0.0)
